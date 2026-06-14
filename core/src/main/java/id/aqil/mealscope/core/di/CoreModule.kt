@@ -10,7 +10,6 @@ import id.aqil.mealscope.core.domain.usecase.MealUseCase
 import id.aqil.mealscope.core.security.DatabasePassphraseProvider
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -28,11 +27,7 @@ val networkModule = module {
             .build()
     }
     single {
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-    }
-    single {
         OkHttpClient.Builder()
-            .addInterceptor(get<HttpLoggingInterceptor>())
             .certificatePinner(get())
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
@@ -53,7 +48,7 @@ val databaseModule = module {
         Room.databaseBuilder(
             androidContext(),
             MealDatabase::class.java,
-            "mealscope.db",
+            "mealscope_secure.db",
         ).openHelperFactory(DatabasePassphraseProvider.createFactory())
             .fallbackToDestructiveMigration()
             .build()
