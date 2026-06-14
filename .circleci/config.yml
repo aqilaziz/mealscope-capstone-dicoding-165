@@ -1,0 +1,40 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/android:2024.11
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Android SDK packages
+          command: |
+            yes | sdkmanager --licenses
+            sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+      - run:
+          name: Make Gradle executable
+          command: chmod +x ./gradlew
+
+      - run:
+          name: Run lint
+          command: ./gradlew lintDebug
+
+      - run:
+          name: Run unit tests
+          command: ./gradlew testDebugUnitTest
+
+      - run:
+          name: Build debug APK
+          command: ./gradlew assembleDebug
+
+      - run:
+          name: Build release APK
+          command: ./gradlew assembleRelease
+
+workflows:
+  android-ci:
+    jobs:
+      - build

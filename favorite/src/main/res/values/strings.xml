@@ -1,0 +1,5 @@
+<resources>
+    <string name="title_favorite">Favorite Meals</string>
+    <string name="back">Kembali</string>
+    <string name="empty_favorite">Belum ada makanan favorite.</string>
+</resources>
