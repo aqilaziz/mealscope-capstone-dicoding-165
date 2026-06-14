@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.kapt'
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -21,10 +21,18 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-}
 
-kapt {
-    correctErrorTypes = true
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'consumer-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'consumer-rules.pro'
+        }
+    }
 }
 
 dependencies {
@@ -33,7 +41,7 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.6.1'
     implementation 'androidx.sqlite:sqlite-ktx:2.4.0'
     implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
-    kapt 'androidx.room:room-compiler:2.6.1'
+    ksp 'androidx.room:room-compiler:2.6.1'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.11.0'

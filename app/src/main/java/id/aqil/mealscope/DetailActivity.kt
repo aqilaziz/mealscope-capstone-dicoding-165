@@ -21,6 +21,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        applyEdgeToEdge(findViewById(R.id.activityDetailRoot), lightStatusBar = true)
 
         val mealId = intent.getStringExtra(EXTRA_MEAL_ID).orEmpty()
         val image: ImageView = findViewById(R.id.imgMeal)
@@ -46,7 +47,7 @@ class DetailActivity : AppCompatActivity() {
                 val meal = state.mealUi
                 title.text = meal?.title.orEmpty()
                 meta.text = meal?.subtitle.orEmpty()
-                instructions.text = state.message ?: meal?.description.orEmpty()
+                instructions.text = state.message ?: meal?.description ?: getString(R.string.empty_detail)
                 image.load(meal?.imageUrl) {
                     crossfade(true)
                     placeholder(R.drawable.bg_image)

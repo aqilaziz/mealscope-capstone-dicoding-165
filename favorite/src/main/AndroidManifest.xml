@@ -13,7 +13,8 @@
     <application>
         <activity
             android:name=".FavoriteActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MealScope" />
     </application>
 
 </manifest>

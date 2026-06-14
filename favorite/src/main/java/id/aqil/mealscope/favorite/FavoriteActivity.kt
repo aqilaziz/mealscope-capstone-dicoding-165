@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import id.aqil.mealscope.applyEdgeToEdge
 import id.aqil.mealscope.favorite.di.favoriteModule
 import id.aqil.mealscope.favorite.presentation.FavoriteAdapter
 import id.aqil.mealscope.favorite.presentation.FavoriteViewModel
@@ -24,6 +25,7 @@ class FavoriteActivity : AppCompatActivity() {
         ensureModuleLoaded()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite)
+        applyEdgeToEdge(findViewById(R.id.activityFavoriteRoot), lightStatusBar = false)
 
         adapter = FavoriteAdapter { favorite ->
             val intent = Intent().setClassName(packageName, "id.aqil.mealscope.DetailActivity")

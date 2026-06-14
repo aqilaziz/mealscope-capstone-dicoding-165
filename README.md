@@ -17,7 +17,7 @@ MealScope adalah aplikasi katalog makanan berbasis TheMealDB API untuk submissio
 - Clean Architecture dengan model berbeda untuk data, domain, dan presentation.
 - Dependency Injection memakai Koin.
 - Reactive Programming memakai Kotlin Flow untuk network dan database.
-- Continuous Integration memakai CircleCI pada `.circleci/config.yml`.
+- Continuous Integration memakai GitHub Actions pada `.github/workflows/android-ci.yml` dan CircleCI pada `.circleci/config.yml`.
 - Performance tooling memakai LeakCanary pada debug build dan lint task di CI.
 - Security memakai ProGuard obfuscation, SQLCipher database encryption, dan OkHttp certificate pinning.
 
@@ -29,7 +29,11 @@ MealScope adalah aplikasi katalog makanan berbasis TheMealDB API untuk submissio
 
 ## CI
 
-CircleCI configuration:
+GitHub Actions workflow:
+
+https://github.com/aqilaziz/mealscope-capstone-dicoding-165/actions/workflows/android-ci.yml
+
+Commands:
 
 ```bash
 ./gradlew lintDebug testDebugUnitTest assembleDebug assembleRelease
