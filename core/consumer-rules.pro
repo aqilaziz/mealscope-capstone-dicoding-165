@@ -12,6 +12,12 @@
 -keep class * extends androidx.room.RoomDatabase { *; }
 -keep @androidx.room.Dao class * { *; }
 -keep class **_Impl { *; }
+-dontwarn net.sqlcipher.**
+-keep class net.sqlcipher.** { *; }
+-keep class net.zetetic.** { *; }
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
 -dontwarn javax.annotation.**
 -dontwarn kotlin.Unit
 -dontwarn org.koin.**

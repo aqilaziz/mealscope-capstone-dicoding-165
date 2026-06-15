@@ -8,6 +8,11 @@
 -dontwarn okio.**
 -dontwarn javax.annotation.**
 -dontwarn net.sqlcipher.**
+-keep class net.sqlcipher.** { *; }
+-keep class net.zetetic.** { *; }
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
 -keepattributes Signature, InnerClasses, EnclosingMethod, RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
 
 -keep class id.aqil.mealscope.core.data.remote.response.** { *; }
